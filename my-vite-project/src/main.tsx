@@ -20,11 +20,19 @@ const router = createBrowserRouter(
     </Route>
   )
 );
+const rootElement = document.getElementById('root') as HTMLElement;
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+// Onödig deklaration av rootElement, eftersom den endast används en gång
+const root = ReactDOM.createRoot(rootElement);
+
+// Onödigt av strictMode, eftersom den endast används en gång
+const strictMode = (
   <React.StrictMode>
     <ImageProvider>
       <RouterProvider router={router} />
     </ImageProvider>
   </React.StrictMode>
 );
+
+// Onödig användning av render för att rendera strictMode till root, eftersom det kan göras direkt med ReactDOM.createRoot
+root.render(strictMode);

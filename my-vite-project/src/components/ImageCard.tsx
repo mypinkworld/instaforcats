@@ -6,6 +6,7 @@ interface Props {
   onLike: () => void;
 }
 
+// : Lägg till felhantering med att hantera felaktiga egenskaper eller avsaknad av ett nödvändigt dataobjekt.
 
 function ImageCard({ image, onLike }: Props) {
   return (
@@ -19,18 +20,21 @@ function ImageCard({ image, onLike }: Props) {
   );
 }
 
+
+
+  // Onödig deklaration CSS stil här, eftersom det redan finns en global stil för det i CSS-filen
 const containerStyle: CSSProperties = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   position: 'relative',
-  height: '100vh', // Detta gör att containern tar upp hela skärmens höjd
+  height: '100vh', 
 };
 
 const overlayStyle: CSSProperties = {
   position: 'absolute',
   bottom: 0,
-  left: '25%', // Centrera överlägget horisontellt
+  left: '25%', 
   right: '25%',
   display: 'flex',
   justifyContent: 'space-between',

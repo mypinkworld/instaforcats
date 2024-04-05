@@ -1,21 +1,15 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
-import { defaultImages, Image } from '../data';
+import { defaultImages } from '../data';
 
-interface ContextValue {
-  images: Image[];
-  toggleLike: (id: string) => void;
-}
+// Förbättring: använda export för att tydligt visa vilka komponenter och funktioner som skickas ut från den här filen.  hade använt mig av interface och gett contextValue null as any
+const ImageContext = createContext<any>(null);
+export const useImages = () => useContext(ImageContext);
 
-export const ImageContext = createContext<ContextValue>(null as any);
-export const useImages = () => useContext(ImageContext); // convenience hook
-
-interface Props {
-  children: ReactNode;
-}
-
-function ImageProvider({ children }: Props) {
+// Dela upp ImageProvider i mindre komponenter för att göra koden mer läsbar och underhållbar. Använda interface Props för att tydligt visa vilka props som krävs 
+function ImageProvider({ children }: { children: ReactNode }) {
   const [images, setImages] = useState(defaultImages);
 
+  // kortaner funktionens längd genom att extrahera logiken till separata funktioner.
   const toggleLike = (id: string) => {
     const updatedList = images.map((image) => {
       if (image.id !== id) return image;
@@ -24,6 +18,7 @@ function ImageProvider({ children }: Props) {
     setImages(updatedList);
   };
 
+  // Förbättring:Användning av useEffect:
   return (
     <ImageContext.Provider value={{ images, toggleLike }}>
       {children}
