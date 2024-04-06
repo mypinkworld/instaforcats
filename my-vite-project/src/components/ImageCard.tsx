@@ -11,7 +11,7 @@ interface Props {
 function ImageCard({ image, onLike }: Props) {
   return (
     <div style={{ position: 'relative' }}>
-      <img style={imageStyle} src={image.url} alt={image.author} />
+      <img style={imageStyle} src={`/publics/${image.url}`} alt={image.author} />
       <div style={overlayStyle}>
         <h2>{image.author}</h2>
         <h2 onClick={onLike}>{image.isLiked ? '🖤' : '🤍'}</h2>
@@ -23,13 +23,6 @@ function ImageCard({ image, onLike }: Props) {
 
 
   // Onödig deklaration CSS stil här, eftersom det redan finns en global stil för det i CSS-filen
-const containerStyle: CSSProperties = {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  position: 'relative',
-  height: '100vh', 
-};
 
 const overlayStyle: CSSProperties = {
   position: 'absolute',
